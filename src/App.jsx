@@ -1,20 +1,22 @@
-import AlertMessage from "./2_lecture/AlertMessage"
+import AlertMessage from "./2_lecture/AlertMessage";
 
-import PricingDynamic from "./2_lecture/PricingDynamic"
-import Pricing from "./2_lecture/Pricing"
+import PricingDynamic from "./2_lecture/PricingDynamic";
+import Pricing from "./2_lecture/Pricing";
 
-
-import { FaExclamationTriangle,FaInfoCircle } from "react-icons/fa"
+import { FaExclamationTriangle, FaInfoCircle } from "react-icons/fa";
+import Counter from "./2_lecture/Counter";
 
 function App() {
-
   return (
     <>
 
-      <Pricing/>
-      <PricingDynamic/>
+    <Counter/>
 
-      
+
+      {/**
+       <Pricing/>
+      <PricingDynamic/>
+      */}
 
       {/*
 
@@ -35,8 +37,7 @@ function App() {
       
       */}
     </>
-
-  )
+  );
 }
 
-export default App
+export default App;
