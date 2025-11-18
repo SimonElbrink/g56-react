@@ -6,7 +6,14 @@ import {fmtCurrency, fmtDate, fmtDur, fmtTime} from "./formatters.js";
 
 const FlightBooking = () => {
 
+
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
+    const [date, setDate] = useState("");
+
     const [results, setResults] = useState([]);
+
+    const [reload, setReload] = useState(false);
 
 
     useEffect(() => {
@@ -17,7 +24,23 @@ const FlightBooking = () => {
         const cheapestFlights = searchFlights().slice(0, 3);
 
         setResults(cheapestFlights);
-    }, []);
+    }, [reload]);
+
+
+    const searchButtonHandler= () => {
+
+        const flights = {
+            from: from,
+            to: to,
+            date: date
+        }
+
+        const data = searchFlights(flights);
+        setResults(data);
+
+        document.title = `Flight Search - ${data.length} results found`;
+
+    }
 
 
     return (
@@ -46,7 +69,11 @@ const FlightBooking = () => {
                             <small className="text-danger"></small>
                             <div className="input-group input-group-lg">
                                 <span className="input-group-text">From</span>
-                                <input className="form-control" placeholder="e.g., ARN"/>
+                                <input className="form-control"
+                                       placeholder="e.g., ARN"
+                                       value={from}
+                                       onChange={(e) => setFrom(e.target.value)}
+                                />
                             </div>
                         </div>
 
@@ -54,7 +81,11 @@ const FlightBooking = () => {
                             <small className="text-danger"></small>
                             <div className="input-group input-group-lg">
                                 <span className="input-group-text">To</span>
-                                <input className="form-control" placeholder="e.g., LHR"/>
+                                <input className="form-control"
+                                       placeholder="e.g., LHR"
+                                       value={to}
+                                       onChange={(e) => setTo(e.target.value)}
+                                />
                             </div>
                         </div>
 
@@ -62,12 +93,16 @@ const FlightBooking = () => {
                             <small className="text-danger"></small>
                             <div className="input-group input-group-lg">
                                 <span className="input-group-text">📅</span>
-                                <input type="date" className="form-control"/>
+                                <input type="date"
+                                       className="form-control"
+                                       value={date}
+                                       onChange={(e) => setDate(e.target.value)}
+                                />
                             </div>
                         </div>
 
                         <div className="col-12 col-md-3 d-grid">
-                            <button className="btn btn-primary btn-lg" type="button">
+                            <button className="btn btn-primary btn-lg" type="button" onClick={searchButtonHandler}>
                                 Search flights
                             </button>
                         </div>
@@ -80,7 +115,7 @@ const FlightBooking = () => {
                 <div className="d-flex align-items-center gap-2">
                     <span className="badge rounded-pill text-bg-primary">results {results.length}</span>
 
-                    <button className="btn btn-outline-primary btn-sm">
+                    <button className="btn btn-outline-primary btn-sm" onClick={() => setReload(!reload)}>
                         Show Best Deals
                     </button>
                 </div>
