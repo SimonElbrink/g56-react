@@ -9,18 +9,21 @@ import LikeButtons from "./2_lecture/LikeButtons";
 import PersonForm from "./2_lecture/PersonForm";
 
 import LifecycleDemo from "./3_lecture/LifecycleDemo.jsx";
+import FlightBooking from "./3_lecture/FlightBooking.jsx";
 
 function App() {
     return (
         <>
 
 
-            <LifecycleDemo/>
+            <FlightBooking/>
 
 
 
 
             {/**
+            <LifecycleDemo/>
+
              <PersonForm/>
 
              <Counter/>
