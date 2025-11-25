@@ -11,16 +11,18 @@ import PersonForm from "./2_lecture/PersonForm";
 import LifecycleDemo from "./3_lecture/LifecycleDemo.jsx";
 import FlightBooking from "./3_lecture/FlightBooking.jsx";
 import FlightBookingUseForm from "./3_lecture/FlightBookingUseForm.jsx";
+import InvitationApp from "./4_lecture/InvitationApp.jsx";
 
 function App() {
     return (
         <>
 
 
-            <FlightBookingUseForm/>
+            <InvitationApp/>
 
 
             {/**
+            <FlightBookingUseForm/>
             <FlightBooking/>
 
             <LifecycleDemo/>
