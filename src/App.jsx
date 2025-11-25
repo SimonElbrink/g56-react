@@ -13,15 +13,23 @@ import FlightBooking from "./3_lecture/FlightBooking.jsx";
 import FlightBookingUseForm from "./3_lecture/FlightBookingUseForm.jsx";
 import InvitationApp from "./4_lecture/InvitationApp.jsx";
 
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from "./4_lecture/router/AppRouter.jsx";
+
 function App() {
     return (
         <>
 
+            <BrowserRouter>
+                <AppRouter/>
+            </BrowserRouter>
 
-            <InvitationApp/>
+
 
 
             {/**
+            <InvitationApp/>
+
             <FlightBookingUseForm/>
             <FlightBooking/>
 
