@@ -1,5 +1,5 @@
 import React from 'react';
-import {Routes,Route, Link, NavLink, Outlet} from "react-router-dom";
+import {Routes, Route, Link, NavLink, Outlet, useNavigate, useLocation} from "react-router-dom";
 
 const AppRouter = () => {
     return (
@@ -24,14 +24,39 @@ const AppRouter = () => {
 };
 
 const Home = () => {
-    return(
+
+    const navigate = useNavigate();
+
+    return (
         <div className="container">
             <h1>Home Page</h1>
             <p>Welcome to the home page!</p>
 
-            <Link className="btn btn-primary" to="/dashboard">
-                Dashboard
-            </Link>
+
+            <div className="btn-group">
+                <button className={"btn btn-outline-danger"}
+                        onClick={() => navigate(-1)}
+                >Go Back
+                </button>
+
+                <button className={"btn btn-outline-success"}
+                        onClick={() => navigate(1)}
+                >Go Forward
+                </button>
+
+                <button className={"btn btn-outline-primary"}
+                        onClick={() => navigate("/about")}
+                >Go to About
+                </button>
+
+                <Link className="btn btn-primary" to="/dashboard" state={{role: "ADMIN"}}>
+                    Go to Admin Dashboard
+                </Link>
+
+                <Link className="btn btn-primary" to="/dashboard" state={{role: "USER"}}>
+                    Go to USER Dashboard
+                </Link>
+            </div>
 
         </div>
     )
@@ -63,6 +88,13 @@ const NotFound = () => {
 }
 
 const Dashboard = () => {
+
+    const location = useLocation();
+
+
+    console.log(location);
+
+
     return (
         <div className="container-fluid vh-100 d-flex flex-column">
             <div className="row flex-grow-1">
@@ -88,12 +120,14 @@ const Dashboard = () => {
                             >
                                 Invitations
                             </NavLink>
-                            <NavLink
+
+                            {location.state?.role === "ADMIN" &&  ( <NavLink
                                 to="/dashboard/settings"
                                 className="btn btn-outline-success w-100 mb-2"
                             >
                                 Settings
-                            </NavLink>
+                            </NavLink>)}
+
                         </div>
                     </div>
                 </div>
@@ -109,13 +143,11 @@ const Dashboard = () => {
 };
 
 
-
 //Routes in the Dashboard
 const DashboardHome = () => <h2>Welcome to the Dashboard!</h2>;
 const ManageUsers = () => <h2>Manage Users Page</h2>;
 const Invitations = () => <h2>Invitations Page</h2>;
 const Settings = () => <h2>Settings Page</h2>;
-
 
 
 export default AppRouter;
